@@ -1,0 +1,31 @@
+services:
+  runner:
+    image: runner
+    container_name: runner
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/code
+    environment:
+      WAREHOUSE_USER: ${POSTGRES_USER}
+      WAREHOUSE_PASSWORD: ${POSTGRES_PASSWORD}
+      WAREHOUSE_DB: ${POSTGRES_DB}
+      WAREHOUSE_HOST: ${POSTGRES_HOST}
+      WAREHOUSE_PORT: ${POSTGRES_PORT}
+  warehouse:
+      image: postgres:latest
+      container_name: warehouse
+      environment:
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DB}
+      volumes:
+        - ./database:/docker-entrypoint-initdb.d
+      healthcheck:
+        test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+        interval: 5s
+        retries: 5
+      restart: always
+      ports:
+        - "5433:5433"
