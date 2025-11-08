@@ -1,8 +1,8 @@
 import psycopg2.extras as p
 
-from src.data_test_ci.data_pipeline import run
-from src.data_test_ci.utils.db import WarehouseConnection
-from src.data_test_ci.utils.config_db import get_warehouse_creds
+from data_test_ci.data_pipeline import run
+from data_test_ci.utils.db import WarehouseConnection
+from data_test_ci.utils.config_db import get_warehouse_creds
 
 class TestDataPipeline:
     def setup_method(self, test_data_pipeline):
