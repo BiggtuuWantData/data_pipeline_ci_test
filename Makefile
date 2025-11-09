@@ -1,5 +1,5 @@
 up:
-	docker compose --env-file ./.env up --build --force-recreate --no-cache -d
+	docker compose --env-file ./env up --build -d
 
 
 down:
