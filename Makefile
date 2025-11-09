@@ -17,7 +17,7 @@ pytest:
 	docker exec runner pytest /code/test
 
 type:
-	docker exec runner mypy --ignore-missing-imports /code
+	docker exec runner mypy --config-file mypy.ini /code/src
 
 lint: 
 	docker exec runner flake8 /code 

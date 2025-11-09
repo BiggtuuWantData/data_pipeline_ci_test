@@ -1,0 +1,3 @@
+trigger ci
+edit workflow name
+trigger ci after push to repo
